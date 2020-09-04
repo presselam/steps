@@ -16,14 +16,14 @@ function Results(props) {
     paging : false,
     rowStyle : rowData => {
       if( rowData.eligible === params.eligible ){
-        return {backgroundColor : 'blue'};
+        return {backgroundColor : '#256EFF'};
       }
 
       if (rowData.stake > 40) {
-        return {backgroundColor : 'green'};
+        return {backgroundColor : '#3DDC97'};
       }
 
-      return {};
+      return {backgroundColor : '#FCFCFC'};
     }
   };
 
