@@ -10,11 +10,25 @@ class Form extends React.Component {
     var params = this.props.location.pathname.split('/').filter(
         (value) => {return value !== ''});
 
-    if (params.length === 3) {
-      this.state = {wager : params[0], total : params[1], eligible : params[2]};
-    } else {
-      this.state = {wager : 40, total : '', eligible : ''};
+    const state = {wager : 40, total : '', eligible : ''};
+
+    for (var i = 0; i < params.length; i++) {
+      switch (i) {
+      case 0:
+        state.wager = params[i];
+        break;
+      case 1:
+        state.total = params[i];
+        break;
+      case 2:
+        state.eligible = params[i];
+        break;
+      default:
+        console.log('should not have gotten here');
+        break;
+      }
     }
+    this.state = state;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

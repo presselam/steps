@@ -12,13 +12,21 @@ export default class MainApp extends React.Component {
   //  }
 
   render() {
-    return (<BrowserRouter><div><nav><Form />
-            </nav>  
-          <hr className='divider'/><Switch>
-            <Route path = "/:wager/:total/:eligible" children =
-             { <Result /> } />
+    return (
+      <BrowserRouter>
+        <div>
+          <nav>
+            <Form />
+          </nav>
+          <hr className='divider'/>
+          <Switch>
+            <Route exact path="/:wager/:total/:eligible" children={ <Result /> } />
           </Switch>
-            </div>  
-      </BrowserRouter>);
+          <Switch>
+            <Route exact path="/:wager/:total" children={ <Result /> } />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
