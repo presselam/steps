@@ -4,8 +4,6 @@ import {useParams} from 'react-router-dom';
 
 function Results(props) {
 
-  console.log(JSON.stringify(props));
-
   const params = useParams();
   params.wager = parseInt(params.wager, 10);
   params.total = parseInt(params.total, 10);
@@ -15,7 +13,7 @@ function Results(props) {
     search : false,
     paging : false,
     rowStyle : rowData => {
-      if( rowData.eligible === params.eligible ){
+      if (rowData.eligible === params.eligible) {
         return {backgroundColor : '#256EFF'};
       }
 
@@ -36,7 +34,6 @@ function Results(props) {
   const goal = (potValue * 0.85) / params.wager;
   for (var i = params.total; i > 0; i--) {
     var stake = ((potValue * 0.85) / i).toFixed(2);
-    //   console.log("["+i+"]["+params.eligible+"]["+goal+"]");
     if (params.eligible > goal) {
       if (i === params.eligible) {
         if (Math.abs(goal - params.eligible) > 5) {
@@ -57,7 +54,7 @@ function Results(props) {
           pot : potValue,
           stake : stake
         });
-        }
+      }
     } else {
       if (i > (params.eligible - 5) && i < (params.eligible + 5)) {
         results.push({
@@ -70,10 +67,9 @@ function Results(props) {
     }
   }
 
-  console.log(JSON.stringify(results));
-
   return (
-    <div style={{ maxWidth: "400px" }}>
+    <div style={{
+    maxWidth: "400px" }}>
       <MaterialTable title='StepBet Results'
         columns = {[
           {title : "Players",  field : "total",    type: 'numeric'},
@@ -82,7 +78,8 @@ function Results(props) {
           { title : "Stake",   field : "stake",    type: 'numeric'},
         ]}
         data = {results}
-        options={config}/>
+        options={
+    config}/>
     </div>
   );
 }
